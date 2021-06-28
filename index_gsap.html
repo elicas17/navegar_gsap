@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.container {
+			width: 100%;
+			height: 800vh;
+			text-align: center;
+			overflow: hidden;
+			background: linear-gradient(#656ba3,
+					#925061,
+					#532d36,
+					#3a3f72,
+					#352941);
+		}
+
+		h1 {
+			color: white;
+			padding-top: 50px;
+			font-family: sans-serif;
+			font-size: 3rem;
+		}
+
+
+		.container_animacion {
+			position: relative;
+			display: flex;
+			height: 785vh;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.nave {
+			position: absolute;
+			top: 100px;
+			width: 350px;
+			height: 350px;
+			transform: rotate(180deg);
+		}
+
+		.planeta {
+			position: absolute;
+			width: 300px;
+			height: 300px;
+			opacity: 0;
+		}
+
+		.planeta1 {
+			opacity: 1;
+			top: 100vh;
+			right: 15%;
+		}
+
+		.planeta2 {
+			opacity: 1;
+			top: 100vh;
+			left: 15%;
+		}
+
+		.planeta3 {
+			opacity: 1;
+			top:0;
+			right: -100vh;
+			height:400px;
+			width: 400px;
+
+		}
+		.planeta4 {
+			opacity: 1;
+			width: 350px;
+			height: 350px;
+			top:5vh;
+			left: -100vh;
+		}
+		.planeta5 {
+			opacity: 1;
+			width: 700px;
+			height: 700px;
+			top:100vh;
+			right: 5vh;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Animacion con scroll</h1>
+		<div class="container_animacion">
+			<img class="nave" src="nave.png" />
+			<img class="planeta planeta1" src="marte.png" />
+			<img class="planeta planeta2" src="tierra.png" />
+			<img class="planeta planeta3" src="jupiter.png" />
+			<img class=" planeta planeta4" src="venus.png" />
+			<img class=" planeta planeta5" src="sol.png" />
+		</div>
+
+	</div>
+	<script>
+		gsap.registerPlugin(ScrollTrigger);
+
+		const nave = document.querySelector('.nave');
+		const planeta_1 = document.querySelector('.planeta1');
+		const planeta_2 = document.querySelector('.planeta2');
+		const planeta_3 = document.querySelector('.planeta3');
+		const planeta_4 = document.querySelector('.planeta4');
+		const sol = document.querySelector('.planeta5');
+
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: '.container_animacion',/*PONER EL CONTENEDOR QUE SE VAYA A ANIMARN */
+				pin: true,/*anclar EN el contenedor*/
+				markers: true,
+				start: 'top top',
+				scrub: true,
+				end: '100% 100%',
+			}
+		});
+		tl.to(nave, {
+			scale: 0.5,
+			y: '30vh',
+			duration: 4,
+
+		});
+		tl.to(planeta_1, {
+			opacity: 1,
+			y: '-50vh',
+			duration: 3.5,
+			scale: 1.5,
+		});
+		tl.to(planeta_2, {
+			opacity: 1,
+			y: '-75vh',
+			scale: 1,
+			duration: 3.5,
+		});
+		tl.to(nave, {
+			rotate: 220,
+			duration: 3.5,
+		});
+		tl.to(nave, {
+			x: '-10vw',
+			y: '50vh',
+			duration: 5,
+		});
+		tl.to(planeta_2, {
+			opacity: 1,
+			y: '-150vh',
+			scale: 0.7,
+			duration: 3.5,
+		});
+		tl.to(nave, {
+			rotate: 120,
+			duration: 3.5,
+		});
+		tl.to(planeta_1,{
+			y:'-150vh',
+			duration: 3.5,
+		});
+		tl.to(nave,{
+			x:'75vh',
+			duration:5
+		});
+		tl.to(planeta_3,{
+			x:'-120vw',
+			opacity:1,
+			duration:8,
+		});
+		tl.to(nave,{
+			rotate:250,
+			duration:5,
+		});
+		tl.to(nave,{
+			x:'-35vw',
+			y:'300',
+			duration:8,
+		});
+		tl.to(planeta_3,{
+			x:'-100',
+			duration:8,
+		});
+		tl.to(planeta_4,{
+			x:'130vh',
+			opacity:1,
+			duration:8,
+		});
+		tl.to(nave,{
+			rotate:150,
+			duration:3,
+		});
+		tl.to(nave,{
+			x:'1vw',
+			duration:3,
+		});
+		tl.to(planeta_4,{
+			x:'230vw',
+			opacity:1,
+			duration:8,
+		});
+		tl.to(nave,{
+			rotate:0,
+			duration:3,
+		});
+		tl.to(sol,{
+			y:'-70vh',
+			duration: 3.5,
+		});
+	
+
+	</script>
+</body>
+
+</html>
